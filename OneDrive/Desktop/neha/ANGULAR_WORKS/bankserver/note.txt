@@ -1,0 +1,111 @@
+Server Creation
+..................
+
+                Install Express: 
+                command in cmd prompt  ->    npm i express
+                                           i-install
+
+1. Import Express
+
+       * all the import elements will be on top of the complied
+       * everything is imported with :
+            require()
+            - the value inside require function wil in be in strings
+            - and aything imported has to be stored inside some variable:
+                    const vari_name= require("filename")
+                 eg: const app= require("express")
+
+
+2. Create an app using Express
+// simply calling the express() function will create an express app, as 'express' function is created by Express module
+
+3. Create port number for the server to run
+        (3000)
+4. Create requests according to our project
+
+
+        unlike angular the express serve will not get auto complied .....here it has to be recomplied each time whnever any changes are made
+        To solve this we use a differnt node version    -   nodemon
+                - npm i -g nodemon          ----- command to install nodemon
+                        i-install  g-global
+
+        the data in server will be of JSON formate, hence the responses will not be in readable format
+        A new package has to be imported - express.json()
+        syntax: app.use(express.json())
+
+get
+// the GET , will have one request argument  and a response argument
+// SEND method is used for sending any responses
+
+
+nodemon Server
+.................
+
+- npm i -g nodemon
+
+
+
+User Authentication using express
+...................................
+
+
+
+        JWT token (Json Web Token)
+        ..............................
+
+jsonwebtoken    - Library               
+                  install-       npm i jsonwebtoken
+                                the verson will be in 'package.json'
+                             enter in dataservice.js -   const jwt = require("jsonwebtoken")
+sign()          - method used to generate token
+                  the method accepts 2 arguments - (payload: string | object| buffer, seceretOPrivatker: jwt.secret)
+
+* the token will be generated only while a user login\
+* so that it ensures only the logged in user can do the transaction and no others
+
+
+
+        MIDDLEWARE
+.........................
+* Middlewares have the ability to control server requests
+* its a funtion with 3 arguments (request,response,next)
+
+2 types: 
+        1.Application Specific Middlewares
+                        while executing first the middleware will be executed, and after that the remaning codes will be executed, is there is any issue with middleware, then the next line codes will not to executed
+        2.Router Specific Middleware
+
+
+
+Solving run-time errors in JS
+................................
+
+try catch
+
+try{
+        error causing code
+}
+catch{
+        solution
+}
+
+
+.............
+  MONGO DB
+..............
+
+- mongodb server
+- shell commands in mongodb
+
+        - to see the databases(will display all the databases available)
+                > show dbs
+        - to open any databases
+                > use db_name
+        - a database will have many collections inside it, to display the collections in it
+                > show collections
+        - collections will have many data, to view those data inside a specific collection
+                > db.collection_name.find()
+        - to display a specific data inside colection and not all data
+                > db.collection_name.findOne({unique_data_to_identy})
+                > db.bank.findOne({acno})
+        - to insert new data
