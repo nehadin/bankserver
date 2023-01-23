@@ -57,7 +57,7 @@ jsonwebtoken    - Library
                   install-       npm i jsonwebtoken
                                 the verson will be in 'package.json'
                              enter in dataservice.js -   const jwt = require("jsonwebtoken")
-sign()          - method used to generate token
+sign()          - method used to generate token3-*]P-[]
                   the method accepts 2 arguments - (payload: string | object| buffer, seceretOPrivatker: jwt.secret)
 
 * the token will be generated only while a user login\
@@ -72,7 +72,7 @@ sign()          - method used to generate token
 
 2 types: 
         1.Application Specific Middlewares
-                        while executing first the middleware will be executed, and after that the remaning codes will be executed, is there is any issue with middleware, then the next line codes will not to executed
+                        while executing first the middleware will be executed, and after that the remaning codes will be executed, if there is any issue with middleware, then the next line codes will not be to executed
         2.Router Specific Middleware
 
 
@@ -90,9 +90,15 @@ catch{
 }
 
 
+
+
+
+
 .............
   MONGO DB
 ..............
+
+
 
 - mongodb server
 - shell commands in mongodb
@@ -100,12 +106,85 @@ catch{
         - to see the databases(will display all the databases available)
                 > show dbs
         - to open any databases
-                > use db_name
+                > use database_name
         - a database will have many collections inside it, to display the collections in it
                 > show collections
-        - collections will have many data, to view those data inside a specific collection
+        - collections will have many data, to view those data inside a specific collection,ie., entire data
                 > db.collection_name.find()
-        - to display a specific data inside colection and not all data
+        - to display a specific data inside colection and not all data,ie., specific or single date
                 > db.collection_name.findOne({unique_data_to_identy})
                 > db.bank.findOne({acno})
         - to insert new data
+                > db.collection_name.insertOne({data})
+        - to view any single data as per any condition
+                > db.collection_name.find({condition})
+        - to delete,
+                - specific or single data
+                        > db.collection_name.deleteOne({data})
+                        - delete count : it returns a number saying how many values are deleted.
+                                        if the said data is avialable it will have value 1
+                                        if again requesting to delete the same data the value will be 0
+        - update
+                > db.collection_name.updateOne({old value/data},{new value/data}) 
+                                                ({uname:'anu'},{uname:'anu.v'})
+
+CRUD - create read update delete
+
+
+
+Mongodb is unstructured data, 
+        ie., even if we miss or keep any field blank it will be accepted, will not generate any error
+
+MongoDB Operators
+------------------
+        -$gt - greater than
+        -$lt - less than
+        -$eq - equal to
+
+
+
+
+Serve MonogoDB integration
+..........................
+
+
+- mongoose - Library required to intergate server and database (integrate MongoDB and server)
+                install command
+                > npm i monngoose
+
+
+
+Server mdb integration
+..........................
+        1. import mongoose
+        2. State connection string via mongoose
+        3. Define a bank database Model
+        4. Finally export the schema to use it in other files
+
+
+
+....................
+INTEGRATION
+`````````````````````
+
+
+
+ANGUALR SERVER INTEGRATION / FRONTEND - BACKEND INTEGRATION
+_____________________________________________________________
+--------------------------------------------------------------
+
+angular running port - 4200
+server port - 3000
+
+both has to be integrated
+
+CORS (Cross Orgin Resource Sharing)
+____________________________________
+Module for intergating Angular and node         npm i cors
+
+* importing cors in 'index.js'
+        const cors=require('cors')      //import cors
+
+* after app creation , we need to connect to cors 
+        app.use(cors({origin:'http://localhost:4200'}))     //connecting cors  
+

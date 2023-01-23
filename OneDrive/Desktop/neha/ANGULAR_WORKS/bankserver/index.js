@@ -1,16 +1,17 @@
+const cors = require('cors')      //import cors
 
 
 // import dataservice file from service folder
-const dataservice = require("./service/dataservice")
+const dataservice = require("./service/dataService")
 
+const jwt = require('jsonwebtoken')       //
 // import express
 const express = require('express')
-
-
 
 // create app
 const app = express()
 
+app.use(cors({ origin: 'http://localhost:4200' }))     //connecting cors 
 
 app.use(express.json())         //convert json data
 
@@ -38,47 +39,48 @@ const jwtmiddleware = (req, res, next) => {
 
 
 
-
+//POST
 
 //register
 app.post('/register', (req, res) => {
 
-    const result = dataservice.register(req.body.acno, req.body.uname, req.body.psw)
-    res.status(result.statusCode).json(result)
-
+    dataservice.register(req.body.acno, req.body.uname, req.body.psw).then(result => {
+        res.status(result.statusCode).json(result)
+    })
 })
 
 // login
 
 app.post('/login', (req, res) => {
 
-    const result = dataservice.login(req.body.acno, req.body.psw)
-    res.status(result.statusCode).json(result)
-
+    dataservice.login(req.body.acno, req.body.psw).then(result => {
+        res.status(result.statusCode).json(result)
+    })
 })
 
 // deposit
-app.post('/deposit',jwtmiddleware,  (req, res) => {
+app.post('/deposit', jwtmiddleware, (req, res) => {
 
-    const result = dataservice.deposit(req.body.acno, req.body.psw, req.body.amount)
-    res.status(result.statusCode).json(result)
-
+    dataservice.deposit(req.body.acno, req.body.psw, req.body.amount).then(result => {
+        res.status(result.statusCode).json(result)
+    })
 })
 
 
 // withdraw
-app.post('/withdraw',jwtmiddleware, (req, res) => {
+app.post('/withdraw', jwtmiddleware, (req, res) => {
 
-    const result = dataservice.withdraw(req.body.acno, req.body.psw, req.body.amount)
-    res.status(result.statusCode).json(result)
-
+    dataservice.withdraw(req.body.acno, req.body.psw, req.body.amount).then(result => {
+        res.status(result.statusCode).json(result)
+    })
 })
 
 // request  
-app.post('/gettransaction',jwtmiddleware, (req, res) => {
+app.post('/transaction', jwtmiddleware, (req, res) => {
 
-    const result = dataservice.gettransaction(req.body.acno)
-    res.status(result.statusCode).json(result)
+    dataservice.gettransaction(req.body.acno).then(result => {
+        res.status(result.statusCode).json(result)
+    })
 
 })
 
@@ -88,11 +90,18 @@ app.post('/gettransaction',jwtmiddleware, (req, res) => {
 // app.get('/',(req,res)=> {res.send('GET Method checking')})
 
 
-// POST
+
 
 
 
 // //Delete
+
+app.delete('/deleteacc/:acno', jwtmiddleware, (req, res) => {
+    dataservice.acdelete(req.params.acno).then(result => {
+        res.status(result.statusCode).json(result)
+    })
+})
+
 // app.delete('/',(req,res)=>{
 //     res.send('DELETE Method checking..........')
 // })
